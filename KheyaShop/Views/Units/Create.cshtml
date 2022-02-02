@@ -1,0 +1,32 @@
+﻿@model ProductUnit
+
+@{ 
+    ViewData["Title"] = "Product Unit";
+}
+
+<div class="row">
+    <p>
+        <h4>
+            Create a product unit
+        </h4>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Unit" class="control-label"></label>
+                <span asp-validation-for="Unit"></span>
+                <input asp-for="Unit" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+         
+                <input type="submit" class="btn btn-primary float-right" value="Create"/>
+                <a class="btn btn-info" asp-action="Index">Show All</a>
+            </div>
+
+        </form>
+    </div>
+</div>

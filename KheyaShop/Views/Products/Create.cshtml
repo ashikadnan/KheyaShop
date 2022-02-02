@@ -1,0 +1,115 @@
+﻿@model ProductsVM
+@using KheyaShop.Data.ViewModels
+
+@{
+    ViewData["Title"] = "Create Product";
+
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <p>
+            <h4>Create a new product</h4>
+        </p>
+
+    </div>
+    <div class="col-md-10 offset-1">
+
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label class="custom-file-label" for="customFile">Upload Product Image</label>
+                <input asp-for="ProductImage" class="custom-file-input" id="customFile">
+                <span asp-validation-for="ProductImage" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductName"></label>
+                <span asp-validation-for="ProductName"></span>
+                <input asp-for="ProductName" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId"></label>
+                <span asp-validation-for="CategoryId"></span>
+                <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductPrice"></label>
+                <span asp-validation-for="ProductPrice"></span>
+                <input asp-for="ProductPrice" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="ProductUnitValue"></label>
+                <span asp-validation-for="ProductUnitValue"></span>
+                <input asp-for="ProductUnitValue" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+
+                <label asp-for="UnitId"></label>
+                <span asp-validation-for="UnitId"></span>
+                <select asp-for="UnitId" asp-items="ViewBag.ProductUnits" class="form-control"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductQuantity"></label>
+                <span asp-validation-for="ProductQuantity"></span>
+                <input asp-for="ProductQuantity" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductSku"></label>
+                <span asp-validation-for="ProductSku"></span>
+                <input asp-for="ProductSku" type="text" class="form-control" />
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="ShortDesciption"></label>
+                <span asp-validation-for="ShortDesciption"></span>
+                <input asp-for="ShortDesciption" type="text" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="LongDesciption"></label>
+                <span asp-validation-for="LongDesciption"></span>
+                <textarea asp-for="LongDesciption" cols="50" rows="5" type="text" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                <a class="btn btn-outline-info" asp-action="Index">Show All</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+

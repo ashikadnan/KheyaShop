@@ -1,0 +1,68 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "All orders";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h2>List of all your orders</h2>
+        </p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                    {
+                        <th>User</th>
+                    }
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@order.Id</td>
+                        <td class="align-middle">
+                            <ul style="list-style:none;">
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <li>
+                                        <div class="alert laert-info" role="alert">
+                                            <span class="badge bg-success">@item.amount</span>[@item.Price.ToString("c")] - @item.Product.ProductName
+                                        </div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </td>
+                        <td class="align-middle">
+                            @order.OrderItems.Select(m => m.Product.ProductPrice * m.amount).Sum().ToString("c")
+                        </td>
+
+                        <td class="align-middle">
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                            {
+                                @order.User.FullName
+                            }
+
+                        </td>
+                        }
+
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

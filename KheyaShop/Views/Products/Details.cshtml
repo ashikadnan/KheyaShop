@@ -1,0 +1,62 @@
+﻿
+@model Product
+
+@{
+    ViewData["Title"] = "Product Details";
+
+}
+
+
+
+<div class="row">
+
+
+    <div class="col-md-10 offset-1">
+        <div class="card mb-3" style="max-width: 800px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.ProductName
+
+
+
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <img src="~/images/@Model.ProductImage" alt="Model.Name" width="100%">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <p class="card-text"><b>Product SKU: </b>@Model.ProductSku</p>
+                        <p class="card-text"><b>Quantity: </b>@Model.ProductQuantity</p>
+                        <p class="card-text"><b>Unit Value: </b>@Model.ProductUnitValue</p>
+                        <p class="card-text"><b>Unit: </b>@Model.ProUnit.Unit</p>
+                        <p class="card-text"><b>Category: </b>@Model.Categories.CategoryMain</p>
+                        <p class="card-text"><b>Summary: </b>@Model.ShortDesciption</p>
+                        <p class="card-text"><b>Description: </b>@Model.LongDesciption</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer ">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                Back to List
+                            </a>
+                            <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@Model.Id">
+                                <i class="bi bi-cart-plus">@Model.ProductPrice.ToString("c")</i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

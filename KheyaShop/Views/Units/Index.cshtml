@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ProductUnit>
+
+@{
+    ViewData["Title"] = "List of Units";
+}
+
+<div class="row">
+    <p>
+        <h4>
+            List of Units
+        </h4>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Unit)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Unit</td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edit</a> |
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@await Html.PartialAsync("_CreateItem", "Units")
