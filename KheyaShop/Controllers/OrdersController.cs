@@ -71,6 +71,19 @@ namespace KheyaShop.Controllers
         public async Task <IActionResult> CompleteOrder()
         {
             var items = _shoppingCart.GetShoppingCartItems();
+
+            var productsforTop = await _productService.GetAllAsync();
+
+            foreach(var item in items)
+            {
+                foreach(var product in productsforTop)
+                {
+                    if(item.Product.Id == product.Id)
+                    {
+                        await _productService.AddSoldProductAsync(product, item.amount);
+                    }
+                }  
+            }  
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
             await _ordersService.StoreOrdeAsync(items, userId, userEmailAddress);

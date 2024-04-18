@@ -9,7 +9,7 @@ namespace KheyaShop.Models
 {
     public class ApplicationUser:IdentityUser
     {
-        [Display(Name ="Full Name")]
+        [Display(Name = "Full name")]
         public string FullName { get; set; }
     }
 }

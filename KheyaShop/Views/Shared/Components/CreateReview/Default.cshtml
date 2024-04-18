@@ -1,0 +1,31 @@
+﻿@using KheyaShop.Data.ViewModels
+@model ReviewVM
+
+@{
+    ViewData["Title"] = "Give a Review";
+}
+
+<body>
+
+    <div class="col-md-12" style="align-content:flex-start">
+        <h3 style="color:cadetblue">Post a review</h3>
+        <div class="col-md-12">
+            <form asp-action="AddReview" asp-controller="Products" asp-route-id="@ViewBag.id" method="post" style="text-align:left;">
+                <div class="form-group">
+                    <span asp-validation-for="ReviewText"></span>
+                    <textarea asp-for="ReviewText" cols="500" rows="5" type="text" class="form-control"></textarea>
+                </div>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-outline-success float-right"/>
+                    </div>
+                }
+
+            </form>
+
+        </div>
+
+    </div>
+</body>
+

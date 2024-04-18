@@ -94,6 +94,9 @@ namespace KheyaShop.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("CategoryImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CategoryMain")
                         .HasColumnType("nvarchar(max)");
 
@@ -195,6 +198,9 @@ namespace KheyaShop.Migrations
                     b.Property<int>("UnitId")
                         .HasColumnType("int");
 
+                    b.Property<int>("soldNum")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -220,6 +226,21 @@ namespace KheyaShop.Migrations
                     b.ToTable("ProductUnit");
                 });
 
+            modelBuilder.Entity("KheyaShop.Models.Product_Review", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReviewId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "ReviewId");
+
+                    b.HasIndex("ReviewId");
+
+                    b.ToTable("Product_Reviews");
+                });
+
             modelBuilder.Entity("KheyaShop.Models.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -227,18 +248,21 @@ namespace KheyaShop.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("ProductId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProuductsId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("ReviewText")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ProuductsId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -264,6 +288,42 @@ namespace KheyaShop.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ShoppingCartItems");
+                });
+
+            modelBuilder.Entity("KheyaShop.Models.Slider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("SliderImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sliders");
+                });
+
+            modelBuilder.Entity("KheyaShop.Models.UserText", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Pid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReviewText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Texts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -444,13 +504,32 @@ namespace KheyaShop.Migrations
                     b.Navigation("ProUnit");
                 });
 
+            modelBuilder.Entity("KheyaShop.Models.Product_Review", b =>
+                {
+                    b.HasOne("KheyaShop.Models.Product", "Product")
+                        .WithMany("ProductReviewObj")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KheyaShop.Models.Review", "Review")
+                        .WithMany("ProductReviewObject")
+                        .HasForeignKey("ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Review");
+                });
+
             modelBuilder.Entity("KheyaShop.Models.Review", b =>
                 {
-                    b.HasOne("KheyaShop.Models.Product", "Prouducts")
+                    b.HasOne("KheyaShop.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("ProuductsId");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("Prouducts");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("KheyaShop.Models.ShoppingCartItems", b =>
@@ -516,6 +595,16 @@ namespace KheyaShop.Migrations
             modelBuilder.Entity("KheyaShop.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("KheyaShop.Models.Product", b =>
+                {
+                    b.Navigation("ProductReviewObj");
+                });
+
+            modelBuilder.Entity("KheyaShop.Models.Review", b =>
+                {
+                    b.Navigation("ProductReviewObject");
                 });
 #pragma warning restore 612, 618
         }

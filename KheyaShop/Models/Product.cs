@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using KheyaShop.Data.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -46,10 +48,12 @@ namespace KheyaShop.Models
         [Display(Name = "Product Image")]
         public string ProductImage { get; set; }
 
+        public int soldNum { get; set; }
+
         //Relationships
 
         //Cayegory
-       
+
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Categories { get; set; }
@@ -59,6 +63,6 @@ namespace KheyaShop.Models
         public int UnitId { get; set; }
         [ForeignKey("UnitId")]
         public ProductUnit ProUnit { get; set; }
-
+        public List<Product_Review> ProductReviewObj { get; set; }
     }
 }

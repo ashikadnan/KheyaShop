@@ -1,14 +1,14 @@
-﻿@using KheyaShop.Data.ViewModels;
-@model LoginVM
+﻿@using KheyaShop.Data.ViewModels; 
+@model LoginVM;
 
-@{
-    ViewData["Title"] = "Login to your account";
+@{ 
+    ViewData["Title"] = "Log in to your account";
 }
 
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Login to your account</h4>
+            <h4>Log in to your account</h4>
         </p>
 
         @if(TempData["Error"] != null)
@@ -17,6 +17,7 @@
                     <span><b>Sorry!</b> - @TempData["Error"] </span>
                 </div>
             }
+
         <div class="row">
             <div class="col-md-8 offset-2">
                 <form asp-action="Login">
@@ -27,7 +28,6 @@
                         <input asp-for="EmailAddress" class="form-control" />
                         <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
-
                     <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>
                         <input asp-for="Password" class="form-control" />
@@ -35,16 +35,11 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Login" class="form-control btn btn-success float-right" style="margin-bottom:10px;" />
-                        <br/>
-                        <a asp-controller="Products" asp-action="AllProducts" class="form-control btn btn-primary float-right">Cancel</a>
+                        <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
+                        <a class="btn btn-outline-secondary" asp-controller="Products" asp-action="AllProducts">Cancel</a>
                     </div>
                 </form>
-
-
-
             </div>
         </div>
     </div>
 </div>
-

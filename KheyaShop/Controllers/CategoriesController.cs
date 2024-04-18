@@ -1,5 +1,6 @@
 ﻿using KheyaShop.Data;
 using KheyaShop.Data.Services;
+using KheyaShop.Data.ViewModels;
 using KheyaShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,7 +36,7 @@ namespace KheyaShop.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> Create([Bind("ParentCategory,CategoryMain")] Category category)
+        public async Task <IActionResult> Create([Bind("ParentCategory,CategoryMain", "CategoryImage")] CategoriesVM category)
         {
             if (!ModelState.IsValid)
             {
@@ -48,18 +49,27 @@ namespace KheyaShop.Controllers
         public async Task <IActionResult> Edit(int id)
         {
             var categoryResult = await _service.GetByIdAsync(id);
-            if(categoryResult == null)
+
+            if (categoryResult == null)
             {
                 return View("NotFound");
             }
+
+            var response = new CategoriesVM()
+            {
+                CategoryMain = categoryResult.CategoryMain, 
+                ParentCategory = categoryResult.ParentCategory, 
+                CategoryImage = categoryResult.CategoryImage,   
+            };
+            
             var categoryDropdownsData = await _service.GetNewDropdownValues();
             ViewBag.Categories = new SelectList(categoryDropdownsData.Categories, "Id", "CategoryMain");
 
-            return View(categoryResult);
+            return View(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ParentCategory", "CategoryMain")] Category category)
+        public async Task<IActionResult> Edit(int id, CategoriesVM category)
         {
            
             if (!ModelState.IsValid)

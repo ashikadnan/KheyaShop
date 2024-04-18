@@ -54,7 +54,13 @@
 
         <div class="text-center">
             <div class="btn-group">
-                <a class="btn btn-outline-success" asp-action="CompleteOrder">Complete Order</a>
+                
+                @if (User.Identity.IsAuthenticated && User.IsInRole("User") && Model.ShoppingCart.ShoppingCartItems.Count!=0 )
+                {
+                    <a class="btn btn-outline-success" asp-action="CompleteOrder">Complete Order</a>
+                }
+
+                
 
                 <div id="paypal-btn"></div>
                 <span style="padding: 5px;"></span>

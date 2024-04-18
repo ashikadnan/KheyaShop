@@ -14,6 +14,8 @@ namespace KheyaShop.Models
         public string ParentCategory { get; set; }
         public string CategoryMain { get; set; }
 
+        public string CategoryImage { get; set; }
+
         //Relationships
 
     }

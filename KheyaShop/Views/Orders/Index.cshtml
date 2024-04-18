@@ -16,7 +16,7 @@
                     <th>Order ID</th>
                     <th>Items</th>
                     <th>Total</th>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <th>User</th>
                     }
@@ -47,9 +47,9 @@
                         </td>
 
                         <td class="align-middle">
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                             {
-                                @order.User.FullName
+                                @order.Email
                             }
 
                         </td>

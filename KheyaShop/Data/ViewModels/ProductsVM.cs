@@ -42,11 +42,14 @@ namespace KheyaShop.Data.ViewModels
         [Display(Name = "Long Description")]
         public string LongDesciption { get; set; }
 
+
+
+        public string ProductImage { get; set; }
         
         //Image
         //[Required(ErrorMessage = "Upload product image!")]
         [Display(Name = "Product Image")]
-        public IFormFile ProductImage { get; set; }
+        public IFormFile ProductImageFile { get; set; }
 
         //Relationships
 
@@ -61,8 +64,10 @@ namespace KheyaShop.Data.ViewModels
         [Required(ErrorMessage = "Product Unit is required!")]
         [Display(Name = "Product Unit")]
         public int UnitId { get; set; }
-       
-        
+
+        public int Reviewid { get; set; }
+
+
 
     }
 }

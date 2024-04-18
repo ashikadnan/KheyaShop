@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Products";
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <br/>
+        <br/>
+        <div class="card-header text-center"><h3>Best Selling Product</h3></div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3" style="float:left; margin-bottom:5%" ;>
+
+                <div class="col-md-12">
+                    <a asp-controller="Products" asp-action="SingleProduct" asp-route-id="@item.Id">
+                        <img src="~/images/@item.ProductImage" alt="item.Name" width="150" height="150"/>
+                        <p class="card-text" style="align-content:center"><b>@item.ProductName</b></p>
+                    </a>
+                    <p class="card-text" style="align-content:center"><b>Price: </b>@item.ProductPrice.ToString("c")</p>
+                    <a style="font-family: 'Lato', sans-serif; font-size:16px;" class="btn btn-outline-primary" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Id">
+                        <i class="bi bi-cart4"></i>Add To Cart
+                    </a>
+                </div>
+
+
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Slider>
+@{
+    ViewData["Title"] = "List of Slider Images";
+}
+
+<div class="row">
+
+    <p>
+        <h4>List of categories</h4>
+    </p>
+</div>
+
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Id)</td>
+                    <td>@Html.DisplayNameFor(model => model.SliderImage)</td>
+                    
+                    <td>Actions</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td><img src="~/images/@item.SliderImage" alt="item.Name" width="300" height="150" style="margin-left: -10px"></td>
+                       
+                        <td>                          
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@await Html.PartialAsync("_CreateItem", "Categories")

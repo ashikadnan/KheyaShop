@@ -1,11 +1,10 @@
 ﻿@model int;
 
-@if (Model > 0)
-{
+
     <li class="nav-item">
-        <a class="btn btn-info" asp-controller="Orders" asp-action="ShoppingCartSummary">
-           Cart @Model
+        <a class="btn btn-info" asp-controller="Orders" asp-action="ShoppingCartSummary"><i class="bi bi-cart2"></i>
+          <span class="badge badge-secondary"></span> @Model
         </a>
     </li>
-}
+
 

@@ -17,9 +17,18 @@ namespace KheyaShop.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Product_Review>().HasKey(am => new
+            {
+                am.ProductId,
+                am.ReviewId
+            });
+            modelBuilder.Entity<Product_Review>().HasOne(x => x.Product).WithMany(am => am.ProductReviewObj).HasForeignKey(x => x.ProductId);
+            modelBuilder.Entity<Product_Review>().HasOne(y=>y.Review).WithMany(am=>am.ProductReviewObject).HasForeignKey(x => x.ReviewId);  
+            
             base.OnModelCreating(modelBuilder);
         }
 
+       
         public DbSet <Category> Categories { get; set; }
         public DbSet<ProductUnit> ProductUnit { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -27,7 +36,14 @@ namespace KheyaShop.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         
         public DbSet<ShoppingCartItems> ShoppingCartItems { get; set; }
+
+        public DbSet<Slider> Sliders  { get; set; }
+
+        public DbSet<UserText> Texts { get; set; }
+        public DbSet<Product_Review> Product_Reviews { get; set; }
         public DbSet<Review> Reviews { get; set; }
+
+
 
 
     }

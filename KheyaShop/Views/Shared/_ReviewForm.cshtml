@@ -1,0 +1,24 @@
+﻿@using KheyaShop.Data.Static
+@model UserText
+
+<div class="row">
+
+    <form>
+
+        <div class="form-group">
+            <input asp-for="Pid" type="hideen" value="@ProductId.ProductsId" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ReviewText"></label>
+            <span asp-validation-for="ReviewText"></span>
+            <input asp-for="ReviewText" type="text" class="form-control" />
+        </div>
+        
+        <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-outline-primary float-right" />
+        </div>
+
+    </form>
+
+</div>

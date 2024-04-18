@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,12 @@ namespace KheyaShop.Data.ViewModels
         [Required(ErrorMessage = "Category name is required")]
         [Display(Name ="Category Name")]
         public string CategoryMain { get; set; }
+
+        public string CategoryImage { get; set; }
+
+        //Image
+        //[Required(ErrorMessage = "Upload product image!")]
+        [Display(Name = "Upalod Category Image")]
+        public IFormFile CategoryImageFile { get; set; }
     }
 }

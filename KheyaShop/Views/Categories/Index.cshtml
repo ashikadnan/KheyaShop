@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <td>@Html.DisplayNameFor(model => model.Id)</td>
+                    <td>@Html.DisplayNameFor(model => model.CategoryImage)</td>
                     <td>@Html.DisplayNameFor(model => model.CategoryMain)</td>
                     <td>@Html.DisplayNameFor(model => model.ParentCategory)</td>
                     <td>Actions</td>
@@ -28,6 +29,7 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td><img src="~/images/@item.CategoryImage" class="rounded-circle" height="70" width="70" asp-append-version="true" />  </td>
                         <td>@Html.DisplayFor(modelItem => item.CategoryMain)</td>
                         <td>@Html.DisplayFor(modelItem => item.ParentCategory)</td>
 

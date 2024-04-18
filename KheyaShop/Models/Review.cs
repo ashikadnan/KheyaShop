@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace KheyaShop.Models
 {
     public class Review
     {
-        [Key]
         public int Id { get; set; }
-
         public string ReviewText { get; set; }
-        [ForeignKey("ProductId")]
-        public string ProductId { get; set; }
-        public Product Prouducts { get; set; }
+
+        public string UserId { get; set; }
+        
+        public string UserName { get; set; }
+        public ApplicationUser User { get; set; }   
+
+        public int ProductId { get; set; }
+
+        public List<Product_Review> ProductReviewObject { get; set; }
     }
 }

@@ -7,68 +7,27 @@
 }
 
 
-
 <div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-4 col-xs-6 border-primary mb-3">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-12">
-                        <div class="card-header text-white bg-info">
-                            <p class="card-text">
-                                <h5 class="card-title">
-                                    @item.ProductName
-
-                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                                    {
-                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
-                                    }
-
-
-
-
-
-                                </h5>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <img src="~/images/@item.ProductImage" alt="item.Name" width="300" height="300" style="margin-left: -10px">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <p class="card-text"><b>Category: </b>@item.Categories.CategoryMain</p>
-
-                            <p class="card-text"><b>Stock: </b>@item.ProductQuantity</p>
-                            
-                                    <p class="card-text"><b>Weight: </b>@item.ProductUnitValue</p>
-                               
-                               
-                                    <p class="card-text"><b>Unit: </b>@item.ProUnit.Unit</p>
-                               
-                            <p class="card-text"><b>Stock: </b>@item.ProductSku</p>
-
-
-
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card-footer ">
-                            <p class="card-text">
-                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
-                                    <i class="bi bi-eye-fill"></i> Show Details
-                                </a>
-                                <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Id">
-                                    <i class="bi bi-cart-plus">@item.ProductPrice.ToString("c")</i>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
+    <div class="col-md-12">
+        @foreach (var item in Model)
+            {
+        <div class="col-md-3" style="float:left; margin-bottom:5%"; >
+            
+                <div class="col-md-12">
+                    <a asp-controller="Products" asp-action="SingleProduct" asp-route-id="@item.Id">
+                        <img src="~/images/@item.ProductImage" alt="item.Name" width="150" height="150" style="margin-left:25%" />
+                        <p class="card-text text-center"><b>@item.ProductName</b></p>
+                    </a>
+                    <p class="card-text text-center"><b>Price: </b>@item.ProductPrice.ToString("c")</p>
+                    <a style="font-family: 'Lato', sans-serif; font-size:16px;margin-left:28%" class="btn btn-outline-primary" asp-controller="Orders" asp-action="AddToShoppingCart" asp-route-id="@item.Id">
+                        <i class="bi bi-cart4"></i>Add To Cart
+                    </a>
                 </div>
-            </div>
+            
+
         </div>
-    }
+        }
+    </div>
 </div>
 
 

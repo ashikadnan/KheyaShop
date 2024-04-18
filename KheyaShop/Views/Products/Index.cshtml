@@ -35,7 +35,7 @@
                         <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
                         <td>@Html.DisplayFor(modelItem => item.ProductQuantity)</td>
                         <td>
-                            <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Details</a> |
+                            <a class="btn btn-info" asp-action="SingleProduct" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Details</a> |
                             <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edit</a> |
                             <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete</a>
                         </td>
